@@ -80,6 +80,7 @@ footer a{
 	margin-bottom: 0.5%;
 	float: left;
 	position: relative;
+	white-space: nowrap;
 }
 
 .thematicMapList {
