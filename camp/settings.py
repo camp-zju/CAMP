@@ -62,7 +62,46 @@ AUTH_IP_WHITELIST = []
 
 MANAGERS = ADMINS = os.getenv('ADMINS', [])
 
-INSTALLED_APPS += (PROJECT_NAME,)
+########################
+# WorldMap configuration
+INSTALLED_APPS += (PROJECT_NAME,
+                   'geoexplorer-worldmap',
+                   'geonode_worldmap',
+                   'geonode_worldmap.gazetteer',
+                   'geonode_worldmap.wm_extra',
+                   'geonode_worldmap.mapnotes',
+                   )
+
+from settings import TEMPLATES
+TEMPLATES[0]['OPTIONS']['context_processors'].append('geonode_worldmap.context_processors.resource_urls')
+
+GEONODE_CLIENT_LOCATION = '/static/worldmap_client/'
+
+USE_GAZETTEER = True
+GAZETTEER_DB_ALIAS = 'default'
+GAZETTEER_FULLTEXTSEARCH = False
+# external services to be used by the gazetteer
+GAZETTEER_SERVICES = 'worldmap,geonames,nominatim'
+# this is the GeoNames key which is needed by the WorldMap Gazetteer
+GAZETTEER_GEONAMES_USER = os.getenv('GEONAMES_USER', 'your-key-here')
+WM_COPYRIGHT_URL = "http://gis.harvard.edu/"
+WM_COPYRIGHT_TEXT = "Center for Geographic Analysis"
+DEFAULT_MAP_ABSTRACT = """
+    <h3>The Harvard WorldMap Project</h3>
+    <p>WorldMap is an open source web mapping system that is currently
+    under construction. It is built to assist academic research and
+    teaching as well as the general public and supports discovery,
+    investigation, analysis, visualization, communication and archiving
+    of multi-disciplinary, multi-source and multi-format data,
+    organized spatially and temporally.</p>
+"""
+# these are optionals
+GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY', 'your-key-here')
+USE_HYPERMAP = strtobool(os.getenv('USE_HYPERMAP', 'False'))
+HYPERMAP_REGISTRY_URL = os.getenv('HYPERMAP_REGISTRY_URL', 'http://localhost:8001')
+SOLR_URL = os.getenv('SOLR_URL', 'http://localhost:8983/solr/hypermap/select/')
+MAPPROXY_URL = os.getenv('MAPPROXY_URL', 'http://localhost:8001')
+########################
 
 # Location of url mappings
 ROOT_URLCONF = os.getenv('ROOT_URLCONF', '{}.urls'.format(PROJECT_NAME))
@@ -229,6 +268,78 @@ MAPBOX_ACCESS_TOKEN = os.environ.get('MAPBOX_ACCESS_TOKEN', '')
 BING_API_KEY = os.environ.get('BING_API_KEY', None)
 TIANDITU_API_KEY = os.environ.get('TIANDITU_API_KEY', None)
 
+MAP_BASELAYERS += [
+    {
+        "source": {"ptype": "gxp_stamensource"},
+        "name": "watercolor",
+        "visibility": False,
+        "group": "background",
+        "title": "Stamen Watercolor"
+    }, {
+        "source": {"ptype": "gxp_stamensource"},
+        "name": "toner",
+        "visibility": False,
+        "group": "background",
+        "title": "Stamen Toner"
+    },{
+        "source": {
+            "url": "http://services.arcgisonline.com/arcgis/rest/services/World_Shaded_Relief/MapServer",
+            "ptype": "gxp_arcgiscachesource"},
+        "group": "background",
+        "name": "World Shaded Relief",
+        "visibility": False,
+        "fixed": True,
+        "format": "jpeg",
+        "tiled" : False,
+        "title": "ESRI World Shaded Relief"
+    },{
+        "source": {
+            "url": "http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",
+            "ptype": "gxp_arcgiscachesource"},
+        "group": "background",
+        "name": "World Street Map",
+        "visibility": False,
+        "fixed": True,
+        "format": "jpeg",
+        "tiled" : False,
+        "title": "ESRI World Street Map"
+    },{
+      "source": {
+          "url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+          "ptype": "gxp_arcgiscachesource"},
+      "group": "background",
+      "format": "jpeg",
+      "name": "World Imagery",
+      "visibility": False,
+      "fixed": True,
+      "tiled" : False,
+      "title": "ESRI World Imagery"
+      }, {
+        "source": {
+            "url": "http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer",
+            "ptype": "gxp_arcgiscachesource"},
+        "group": "background",
+        "name": "Light Gray Canvas Base",
+        "visibility": False,
+        "fixed": True,
+        "format": "jpeg",
+        "tiled" : False,
+        "title": "ESRI Light Gray Reference"
+    },
+    {
+        "source": {
+            "url": "http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer",
+            "ptype": "gxp_arcgiscachesource"},
+        "group": "background",
+        "name": "Dark Gray Canvas Base",
+        "visibility": False,
+        "fixed": True,
+        "format": "jpeg",
+        "tiled" : False,
+        "title": "ESRI Dark Gray Reference"
+    }
+]
+
 if TIANDITU_API_KEY:
     MAP_BASELAYERS += [{
         "source": {
@@ -360,7 +471,7 @@ SITE_HOST_NAME = os.getenv('SITE_HOST_NAME', "localhost")
 SITE_HOST_PORT = os.getenv('SITE_HOST_PORT', "8000")
 
 # use the WorldMap client
-GEONODE_CLIENT_HOOKSET = "geonode.client.hooksets.WorldMapHookSet"
+GEONODE_CLIENT_HOOKSET = 'geonode_worldmap.hooksets.WorldMapHookSet'
 CORS_ORIGIN_WHITELIST = (
     HOSTNAME
 )
@@ -402,62 +513,7 @@ DATABASES = {
     }
 }
 
-GEOSERVER_LOCATION = os.getenv(
-    'GEOSERVER_LOCATION', 'http://localhost:8080/geoserver/'
-)
-
-GEOSERVER_LOCATION = os.getenv(
-    'GEOSERVER_LOCATION', 'http://localhost:8080/geoserver/'
-)
-
-GEOSERVER_PUBLIC_HOST = os.getenv(
-    'GEOSERVER_PUBLIC_HOST', SITE_HOST_NAME
-)
-
-GEOSERVER_PUBLIC_PORT = os.getenv(
-    'GEOSERVER_PUBLIC_PORT', 8080
-)
-
-GEOSERVER_PUBLIC_LOCATION = os.getenv(
-    'GEOSERVER_PUBLIC_LOCATION', 'http://{}:{}/geoserver/'.format(GEOSERVER_PUBLIC_HOST, GEOSERVER_PUBLIC_PORT)
-)
-
-OGC_SERVER_DEFAULT_USER = os.getenv(
-    'GEOSERVER_ADMIN_USER', 'admin'
-)
-
-OGC_SERVER_DEFAULT_PASSWORD = os.getenv(
-    'GEOSERVER_ADMIN_PASSWORD', ''
-)
-
-# OGC (WMS/WFS/WCS) Server Settings
-OGC_SERVER = {
-    'default': {
-        'BACKEND': 'geonode.geoserver',
-        'LOCATION': GEOSERVER_LOCATION,
-        'LOGIN_ENDPOINT': 'j_spring_oauth2_geonode_login',
-        'LOGOUT_ENDPOINT': 'j_spring_oauth2_geonode_logout',
-        'PUBLIC_LOCATION': GEOSERVER_PUBLIC_LOCATION,
-        'USER': OGC_SERVER_DEFAULT_USER,
-        'PASSWORD': OGC_SERVER_DEFAULT_PASSWORD,
-        'MAPFISH_PRINT_ENABLED': True,
-        'PRINT_NG_ENABLED': True,
-        'GEONODE_SECURITY_ENABLED': True,
-        'GEOFENCE_SECURITY_ENABLED': GEOFENCE_SECURITY_ENABLED,
-        'GEOFENCE_URL': os.getenv('GEOFENCE_URL', 'internal:/'),
-        'GEOGIG_ENABLED': False,
-        'WMST_ENABLED': False,
-        'BACKEND_WRITE_ENABLED': True,
-        'WPS_ENABLED': False,
-        'LOG_FILE': '%s/geoserver/data/logs/geoserver.log',
-        # Set to dictionary identifier of database containing spatial data in
-        # DATABASES dictionary to enable
-        'DATASTORE': os.getenv('DEFAULT_BACKEND_DATASTORE', 'wmdata'),
-        'PG_GEOGIG': False,
-        # 'CACHE': ".cache"  # local cache file to for HTTP requests
-        'TIMEOUT': int(os.getenv('OGC_REQUEST_TIMEOUT', '30'))  # number of seconds to allow for HTTP requests
-    }
-}
+OGC_SERVER['default']['DATASTORE']= os.getenv('DEFAULT_BACKEND_DATASTORE', 'wmdata')
 
 # If you want to enable Mosaics use the following configuration
 UPLOADER = {
@@ -503,7 +559,7 @@ CUSTOM_AGREE_TOS_TEXT = _("I agree to the <a href='/aboutus/#disclaimer'>Terms a
 # GEONODE_CLIENT_LOCATION = 'http://localhost:9090/'
 
 # Set TIME_ZONE to Shanghai and close USE_TZ to change the time showed in browser
-USE_TZ = False
+USE_TZ = True
 # Modify language settings
 LANGUAGE_CODE = 'zh-cn'
 MODELTRANSLATION_LANGUAGES = [LANGUAGE_CODE, ]
@@ -598,3 +654,7 @@ CACHES = {
 DEFAULT_MAP_ABSTRACT = _("<h4>About Us</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A large amount of geographical information which is closely related to human activities exists in the brilliant human civilization, numerous documents since ancient times, as well as the vast land and ocean. For example, the geographical distribution of individuals, the traces and the social relations for a single person, the migration of a group, as well as the existence, distribution and change of a region and trajectory for non-living things; as for a place, it also contains the people, events, things and other geographical information in previous time.</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The Academic Map Publishing Platform, established by Zhejiang University and Harvard University together, is not only an integrated database providing multi-functional query services, but also a display platform ready for users to present their research productions about geographic information and visualize analysis and select. The big data formed by the platform, will greatly contribute to future scientific research, overnment decision-making and social services.</p>")
 
 GAZETTEER_SERVICES = 'worldmap'
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:8000',
+    'http://localhost:8080',
+]

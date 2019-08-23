@@ -224,16 +224,6 @@
       </article>
       {% endif %}
 
-      {% if GEOGIG_ENABLED and resource.link_set.geogig %}
-        {% with "_geogig_layer_detail.html" as geogig_template %}
-        <article id="geogig" class="tab-pane">
-          {% with resource as obj %}
-            {% include geogig_template %}
-          {% endwith %}
-        </article>
-        {% endwith %}
-      {% endif %}
-
       {% if DISPLAY_RATINGS %}
       <article id="rate" class="tab-pane">
         <!-- TODO: Move this to a reusable template snippet -->
@@ -450,10 +440,8 @@
                 <a class="btn btn-default btn-block btn-xs" href="{% url "layer_metadata" resource.service_typename %}">{% trans "Wizard" %}</a>
                 <a class="btn btn-default btn-block btn-xs" href="{% url "layer_metadata_advanced" resource.service_typename %}">{% trans "Advanced Edit" %}</a>
                 <a class="btn btn-default btn-block btn-xs" href="{% url "layer_metadata_upload" resource.service_typename %}">{% trans "Upload Metadata" %}</a>
-                {% if USE_WORLDMAP %}
-                  <a class="btn btn-default btn-block btn-xs" href="/layers/{{ resource.service_typename }}/searchable-fields">{% trans "Search" %}</a>
-                  <a class="btn btn-default btn-block btn-xs" href="/gazetteer/edit/{{ resource.service_typename }}">{% trans "Gazetteer" %}</a>
-                {% endif %}
+                <a class="btn btn-default btn-block btn-xs" href="/layers/{{ resource.service_typename }}/searchable-fields">{% trans "Search" %}</a>
+                <a class="btn btn-default btn-block btn-xs" href="/gazetteer/edit/{{ resource.service_typename }}">{% trans "Gazetteer" %}</a>
               </div>
               {% endif %}
               {% if GEOSERVER_BASE_URL and not resource.service %}
@@ -687,12 +675,6 @@
 
 {% block extra_script %}
 {{ block.super }}
-    {% if GEOGIG_ENABLED and resource.link_set.geogig %}
-        {% with "_geogig_scripts.html" as geogig_scripts_template %}
-            {% include  geogig_scripts_template %}
-        {% endwith %}
-    {% endif %}
-
     {% if request.user.is_authenticated %}
         {% user_rating_js request.user resource "layer" %}
     {% else %}

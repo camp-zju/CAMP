@@ -47,6 +47,10 @@
     <script>
         var siteUrl = '{{ SITEURL }}'.replace(/\/?$/, '/');
     </script>
+    <script>
+        var siteUrl = '{{ SITEURL }}'.replace(/\/?$/, '/');
+        var staticUrl = '{% static '' %}';
+    </script>
   </head>
 
   <body class="{% block body_class %}{% endblock %}">
@@ -71,7 +75,7 @@
                 {% if user.is_authenticated %}
                     <li role="separator" class="divider"></li>
                     <li><a href="{% url "layer_upload" %}">{% trans "Upload Layer" %}</a></li>
-                    {% if 'geonode.contrib.createlayer' in INSTALLED_APPS %}
+                    {% if 'geonode.geoserver.createlayer' in INSTALLED_APPS %}
                         <li><a href="{% url "layer_create" %}">{% trans "Create Layer" %}</a></li>
                     {% endif %}
                     <li><a href="{% url "document_upload" %}">{% trans "Upload Document" %}</a></li>
@@ -149,7 +153,7 @@
                     <li role="separator" class="divider"></li>
                     <li><a href="{% url "admin:index" %}">{% trans "Admin" %}</a></li>
                     {% if 'geonode.geoserver' in INSTALLED_APPS %}
-                    <li><a href="{% url "proxy" %}?url={{ OGC_SERVER.default.LOCATION }}">{% trans "GeoServer" %}</a></li>
+                    <li><a href="{{ OGC_SERVER.default.WEB_UI_LOCATION }}">GeoServer</a></li>
                     {% endif %}
                     {% if USE_MONITORING %}
                     <li role="separator" class="divider"></li>
