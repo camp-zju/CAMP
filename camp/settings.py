@@ -281,62 +281,6 @@ MAP_BASELAYERS += [
         "visibility": False,
         "group": "background",
         "title": "Stamen Toner"
-    },{
-        "source": {
-            "url": "http://services.arcgisonline.com/arcgis/rest/services/World_Shaded_Relief/MapServer",
-            "ptype": "gxp_arcgiscachesource"},
-        "group": "background",
-        "name": "World Shaded Relief",
-        "visibility": False,
-        "fixed": True,
-        "format": "jpeg",
-        "tiled" : False,
-        "title": "ESRI World Shaded Relief"
-    },{
-        "source": {
-            "url": "http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",
-            "ptype": "gxp_arcgiscachesource"},
-        "group": "background",
-        "name": "World Street Map",
-        "visibility": False,
-        "fixed": True,
-        "format": "jpeg",
-        "tiled" : False,
-        "title": "ESRI World Street Map"
-    },{
-      "source": {
-          "url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
-          "ptype": "gxp_arcgiscachesource"},
-      "group": "background",
-      "format": "jpeg",
-      "name": "World Imagery",
-      "visibility": False,
-      "fixed": True,
-      "tiled" : False,
-      "title": "ESRI World Imagery"
-      }, {
-        "source": {
-            "url": "http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer",
-            "ptype": "gxp_arcgiscachesource"},
-        "group": "background",
-        "name": "Light Gray Canvas Base",
-        "visibility": False,
-        "fixed": True,
-        "format": "jpeg",
-        "tiled" : False,
-        "title": "ESRI Light Gray Reference"
-    },
-    {
-        "source": {
-            "url": "http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer",
-            "ptype": "gxp_arcgiscachesource"},
-        "group": "background",
-        "name": "Dark Gray Canvas Base",
-        "visibility": False,
-        "fixed": True,
-        "format": "jpeg",
-        "tiled" : False,
-        "title": "ESRI Dark Gray Reference"
     }
 ]
 
