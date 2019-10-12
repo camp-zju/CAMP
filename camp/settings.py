@@ -47,7 +47,7 @@ WSGI_APPLICATION = "{}.wsgi.application".format(PROJECT_NAME)
 #ALLOWED_HOSTS = ['localhost', 'django'] if os.getenv('ALLOWED_HOSTS') is None \
 #    else re.split(r' *[,|:|;] *', os.getenv('ALLOWED_HOSTS'))
 
-PROXY_ALLOWED_HOSTS += ('nominatim.openstreetmap.org',)
+PROXY_ALLOWED_HOSTS += ('nominatim.openstreetmap.org', 'gis.sinica.edu.tw')
 
 # AUTH_IP_WHITELIST property limits access to users/groups REST endpoints
 # to only whitelisted IP addresses.
