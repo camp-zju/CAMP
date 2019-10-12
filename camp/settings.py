@@ -281,7 +281,7 @@ MAP_BASELAYERS += [
         "visibility": False,
         "group": "background",
         "title": "Stamen Toner"
-    {
+    }, {
         "source": {
             "url": "http://gis.sinica.edu.tw/ccts/wmts",
             "ptype": "gxp_wmtssource",
