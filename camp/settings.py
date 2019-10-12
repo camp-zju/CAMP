@@ -281,6 +281,16 @@ MAP_BASELAYERS += [
         "visibility": False,
         "group": "background",
         "title": "Stamen Toner"
+    {
+        "source": {
+            "url": "http://gis.sinica.edu.tw/ccts/wmts",
+            "ptype": "gxp_wmtssource",
+            "title": "二十五萬分一中國圖(AMS L500)",
+            },
+        "group": "background",
+        "name": "AMS_L500",
+        "visibility": False,
+        "fixed": True,
     }
 ]
 
