@@ -285,10 +285,140 @@ MAP_BASELAYERS += [
         "source": {
             "url": "http://gis.sinica.edu.tw/ccts/wmts",
             "ptype": "gxp_wmtssource",
-            "title": "二十五萬分一中國圖(AMS L500)",
+            "title": "西漢歷史地圖(W. Han)",
             },
         "group": "background",
-        "name": "AMS_L500",
+        "name": "bc0007",
+        "visibility": False,
+        "fixed": True,
+    }, {
+        "source": {
+            "url": "http://gis.sinica.edu.tw/ccts/wmts",
+            "ptype": "gxp_wmtssource",
+            "title": "東漢歷史地圖(E. Han)",
+            },
+        "group": "background",
+        "name": "ad0140",
+        "visibility": False,
+        "fixed": True,
+    }, {
+        "source": {
+            "url": "http://gis.sinica.edu.tw/ccts/wmts",
+            "ptype": "gxp_wmtssource",
+            "title": "三國歷史地圖(Sanguo)",
+            },
+        "group": "background",
+        "name": "ad0262",
+        "visibility": False,
+        "fixed": True,
+    }, {
+        "source": {
+            "url": "http://gis.sinica.edu.tw/ccts/wmts",
+            "ptype": "gxp_wmtssource",
+            "title": "東晉歷史地圖(E. Jing)",
+            },
+        "group": "background",
+        "name": "ad0382",
+        "visibility": False,
+        "fixed": True,
+    }, {
+        "source": {
+            "url": "http://gis.sinica.edu.tw/ccts/wmts",
+            "ptype": "gxp_wmtssource",
+            "title": "西晉歷史地圖(W. Jing)",
+            },
+        "group": "background",
+        "name": "ad0281",
+        "visibility": False,
+        "fixed": True,
+    }, {
+        "source": {
+            "url": "http://gis.sinica.edu.tw/ccts/wmts",
+            "ptype": "gxp_wmtssource",
+            "title": "南北朝歷史地圖(South and North)",
+            },
+        "group": "background",
+        "name": "ad0497",
+        "visibility": False,
+        "fixed": True,
+    }, {
+        "source": {
+            "url": "http://gis.sinica.edu.tw/ccts/wmts",
+            "ptype": "gxp_wmtssource",
+            "title": "隋代歷史地圖(Sui)",
+            },
+        "group": "background",
+        "name": "ad0612",
+        "visibility": False,
+        "fixed": True,
+    }, {
+        "source": {
+            "url": "http://gis.sinica.edu.tw/ccts/wmts",
+            "ptype": "gxp_wmtssource",
+            "title": "唐代歷史地圖(Tang)",
+            },
+        "group": "background",
+        "name": "ad0741",
+        "visibility": False,
+        "fixed": True,
+    }, {
+        "source": {
+            "url": "http://gis.sinica.edu.tw/ccts/wmts",
+            "ptype": "gxp_wmtssource",
+            "title": "北宋歷史地圖(N. Song)",
+            },
+        "group": "background",
+        "name": "ad1111",
+        "visibility": False,
+        "fixed": True,
+    }, {
+        "source": {
+            "url": "http://gis.sinica.edu.tw/ccts/wmts",
+            "ptype": "gxp_wmtssource",
+            "title": "南宋歷史地圖(S. Song)",
+            },
+        "group": "background",
+        "name": "ad1208",
+        "visibility": False,
+        "fixed": True,
+    }, {
+        "source": {
+            "url": "http://gis.sinica.edu.tw/ccts/wmts",
+            "ptype": "gxp_wmtssource",
+            "title": "元代歷史地圖(Yuan)",
+            },
+        "group": "background",
+        "name": "ad1330",
+        "visibility": False,
+        "fixed": True,
+    }, {
+        "source": {
+            "url": "http://gis.sinica.edu.tw/ccts/wmts",
+            "ptype": "gxp_wmtssource",
+            "title": "明代歷史地圖(Ming)",
+            },
+        "group": "background",
+        "name": "ad1582",
+        "visibility": False,
+        "fixed": True,
+    }, {
+        "source": {
+            "url": "http://gis.sinica.edu.tw/ccts/wmts",
+            "ptype": "gxp_wmtssource",
+            "title": "清代歷史地圖(Qing)",
+            },
+        "group": "background",
+        "name": "ad1820",
+        "visibility": False,
+        "fixed": True,
+    }, {
+        "source": {
+            "url": "http://gis.sinica.edu.tw/ccts/wmts",
+            "ptype": "gxp_wmtssource",
+            "title": "中華民國全圖",
+            },
+        "group": "background",
+        "name": "China_Map_1950s",
         "visibility": False,
         "fixed": True,
     }
