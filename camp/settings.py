@@ -290,7 +290,7 @@ MAP_BASELAYERS += [
         "group": "background",
         "name": "bc0007",
         "visibility": False,
-        "fixed": True,
+        "fixed": True
     }, {
         "source": {
             "url": "http://gis.sinica.edu.tw/ccts/wmts",
@@ -300,7 +300,7 @@ MAP_BASELAYERS += [
         "group": "background",
         "name": "ad0140",
         "visibility": False,
-        "fixed": True,
+        "fixed": True
     }, {
         "source": {
             "url": "http://gis.sinica.edu.tw/ccts/wmts",
@@ -310,7 +310,7 @@ MAP_BASELAYERS += [
         "group": "background",
         "name": "ad0262",
         "visibility": False,
-        "fixed": True,
+        "fixed": True
     }, {
         "source": {
             "url": "http://gis.sinica.edu.tw/ccts/wmts",
@@ -320,7 +320,7 @@ MAP_BASELAYERS += [
         "group": "background",
         "name": "ad0382",
         "visibility": False,
-        "fixed": True,
+        "fixed": True
     }, {
         "source": {
             "url": "http://gis.sinica.edu.tw/ccts/wmts",
@@ -330,7 +330,7 @@ MAP_BASELAYERS += [
         "group": "background",
         "name": "ad0281",
         "visibility": False,
-        "fixed": True,
+        "fixed": True
     }, {
         "source": {
             "url": "http://gis.sinica.edu.tw/ccts/wmts",
@@ -340,7 +340,7 @@ MAP_BASELAYERS += [
         "group": "background",
         "name": "ad0497",
         "visibility": False,
-        "fixed": True,
+        "fixed": True
     }, {
         "source": {
             "url": "http://gis.sinica.edu.tw/ccts/wmts",
@@ -350,7 +350,7 @@ MAP_BASELAYERS += [
         "group": "background",
         "name": "ad0612",
         "visibility": False,
-        "fixed": True,
+        "fixed": True
     }, {
         "source": {
             "url": "http://gis.sinica.edu.tw/ccts/wmts",
@@ -360,7 +360,7 @@ MAP_BASELAYERS += [
         "group": "background",
         "name": "ad0741",
         "visibility": False,
-        "fixed": True,
+        "fixed": True
     }, {
         "source": {
             "url": "http://gis.sinica.edu.tw/ccts/wmts",
@@ -370,7 +370,7 @@ MAP_BASELAYERS += [
         "group": "background",
         "name": "ad1111",
         "visibility": False,
-        "fixed": True,
+        "fixed": True
     }, {
         "source": {
             "url": "http://gis.sinica.edu.tw/ccts/wmts",
@@ -380,7 +380,7 @@ MAP_BASELAYERS += [
         "group": "background",
         "name": "ad1208",
         "visibility": False,
-        "fixed": True,
+        "fixed": True
     }, {
         "source": {
             "url": "http://gis.sinica.edu.tw/ccts/wmts",
@@ -390,7 +390,7 @@ MAP_BASELAYERS += [
         "group": "background",
         "name": "ad1330",
         "visibility": False,
-        "fixed": True,
+        "fixed": True
     }, {
         "source": {
             "url": "http://gis.sinica.edu.tw/ccts/wmts",
@@ -400,7 +400,7 @@ MAP_BASELAYERS += [
         "group": "background",
         "name": "ad1582",
         "visibility": False,
-        "fixed": True,
+        "fixed": True
     }, {
         "source": {
             "url": "http://gis.sinica.edu.tw/ccts/wmts",
@@ -410,7 +410,7 @@ MAP_BASELAYERS += [
         "group": "background",
         "name": "ad1820",
         "visibility": False,
-        "fixed": True,
+        "fixed": True
     }, {
         "source": {
             "url": "http://gis.sinica.edu.tw/ccts/wmts",
@@ -420,7 +420,7 @@ MAP_BASELAYERS += [
         "group": "background",
         "name": "China_Map_1950s",
         "visibility": False,
-        "fixed": True,
+        "fixed": True
     }
 ]
 
