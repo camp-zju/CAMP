@@ -47,6 +47,15 @@
         var siteUrl = '{{ SITEURL }}'.replace(/\/?$/, '/');
         var staticUrl = '{% static '' %}';
     </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?ec4c9289bc04c98d2489501b5f97dd6d";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+      </script>
   </head>
 
   <body class="{% block body_class %}{% endblock %}">
