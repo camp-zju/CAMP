@@ -1,0 +1,11 @@
+[Unit]
+Description=uWSGI instance to serve WorldMap
+After=network.target
+
+[Service]
+User=camp
+Group=camp
+ExecStart=/home/camp/env_hypermap/bin/uwsgi --ini /home/camp/hypermap.ini
+
+[Install]
+WantedBy=multi-user.target

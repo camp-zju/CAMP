@@ -1,0 +1,15 @@
+export DATABASE_URL=postgresql://hypermap:hypermap@localhost:5432/hypermap
+export BROKER_URL=amqp://guest:guest@localhost:5672/
+export CACHE_URL=memcached://localhost:11211/
+export BASE_URL=http://amap.zju.edu.cn
+export ALLOWED_HOSTS="['localhost','amap.zju.edu.cn']"
+export REGISTRY_SEARCH_URL=solr+http://amap.zju.edu.cn:8983
+export REGISTRY_CHECK_PERIOD=120
+export REGISTRY_SKIP_CELERY=True
+export REGISTRY_LIMIT_LAYERS=0
+export REGISTRY_INDEX_CACHED_LAYERS_PERIOD=1
+export REGISTRY_HARVEST_SERVICES=True
+export C_FORCE_ROOT=1
+export CELERY_DEFAULT_EXCHANGE=hypermap
+export REGISTRY_WORLDMAP_USERNAME=admin
+export REGISTRY_WORLDMAP_PASSWORD=ZJU120!@#

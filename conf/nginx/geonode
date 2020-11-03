@@ -1,0 +1,82 @@
+limit_req_zone $binary_remote_addr zone=one:100m rate=100r/s;
+
+# /etc/nginx/nginx.conf中已有gzip on和gzip_disbale "MSIE [1-6]\."
+#gzip on;
+gzip_min_length 1k;
+gzip_comp_level 3;
+gzip_types text/plain application/javascript application/x-javascript application/xml text/javascript text/xml text/css image/jpeg image/gif image/png application/vnd.ogc.wms_xml;
+# gzip_disable "MSIE [1-6]\.";
+gzip_vary on;
+
+server {
+    listen 80;
+    index index.html index.htm;
+    root   /usr/share/nginx/html;
+    server_name 114.116.9.157;
+
+    location /uploaded {
+      alias /home/camp/camp-project/camp/uploaded/;
+      expires 30;
+    }
+
+   location /static {
+      alias /var/www/camp/;
+      expires 30;
+    }
+
+   location /share {
+      alias /home/camp/share/;
+      expires 30;
+   }
+
+   location /geoserver {
+      proxy_pass http://localhost:8080/geoserver;
+      proxy_redirect     off;
+      proxy_set_header   Host $host;
+      proxy_set_header   X-Real-IP $remote_addr;
+      client_max_body_size 100M;
+      proxy_read_timeout 30000;
+    }
+	
+   location /sinica {
+      alias /data/sinica/;
+      expires 30;
+    }
+	
+    #location /solr {
+    #  proxy_pass http://localhost:8983;
+    #  proxy_redirect     off;
+    #  proxy_set_header   Host $host;
+    #  proxy_set_header   X-Real-IP $remote_addr;
+    #  client_max_body_size 100M;
+    #  proxy_read_timeout 30000;
+    #}
+
+    location / {
+    root /home/camp/geonode;
+    proxy_pass http://0.0.0.0:8000/;
+    add_header Access-Control-Allow-Origin "*";
+    limit_req zone=one burst=5 nodelay;
+    if ($request_method = OPTIONS) {
+      add_header Access-Control-Allow-Methods "GET, POST, PUT, PATCH, OPTIONS";
+      add_header Access-Control-Allow-Headers "Authorization, Content-Type, Accept";
+      add_header Access-Control-Allow-Credentials true;
+      add_header Content-Length 0;
+      add_header Content-Type text/plain;
+      add_header Access-Control-Max-Age 1728000;
+      return 200;
+    }
+    client_max_body_size 100M;
+    client_body_buffer_size 128K;
+    add_header Access-Control-Allow-Credentials false;
+    add_header Access-Control-Allow-Headers "Content-Type, Accept, Authorization, Origin, User-Agent";
+    add_header Access-Control-Allow-Methods "GET, POST, PUT, PATCH, OPTIONS";
+    proxy_set_header X-Forwarded-Protocol $scheme;
+    proxy_read_timeout 30000;
+    proxy_redirect     off;
+    proxy_set_header   Host $host;
+    proxy_set_header   X-Real-IP $remote_addr;
+    proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header   X-Forwarded-Host $server_name;
+  }
+}
