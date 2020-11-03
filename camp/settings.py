@@ -267,19 +267,469 @@ THUNDERFOREST_BASEMAPS = os.environ.get('THUNDERFOREST_BASEMAPS', False)
 MAPBOX_ACCESS_TOKEN = os.environ.get('MAPBOX_ACCESS_TOKEN', '')
 BING_API_KEY = os.environ.get('BING_API_KEY', None)
 TIANDITU_API_KEY = os.environ.get('TIANDITU_API_KEY', None)
+SINICA_MAP_BASELAYERS = os.environ.get('SINICA_MAP_BASELAYERS', False)
+SINICA_MAP_BASELAYERS_ENGLISH = os.environ.get('SINICA_MAP_BASELAYERS_ENGLISH', None)
 
-MAP_BASELAYERS += [
-    {
-        'source': {
-            'ptype': 'gxp_bingchinesesource',
-            'apiKey': BING_API_KEY
-        },
-        'name': 'Road',
-        'fixed': True,
-        'visibility': False,
-        'group': 'background'
-    }
-]
+if BING_API_KEY:
+    MAP_BASELAYERS += [
+        {
+            'source': {
+                'ptype': 'gxp_bingchinesesource',
+                'apiKey': BING_API_KEY
+            },
+            'name': 'Road',
+            'fixed': True,
+            'visibility': False,
+            'group': 'background'
+        }
+    ]
+
+if SINICA_MAP_BASELAYERS == 'True':
+    if SINICA_MAP_BASELAYERS_ENGLISH:
+        MAP_BASELAYERS += [{
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["Shang", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "shang", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "Shang"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["West Zhou", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "Xijhou", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "West Zhou"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["Chunqiu", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "spring_autumn", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "Chunqiu"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["Zhanguo", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "warring_states", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "Zhanguo"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["West Han", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "bc0007", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "West Han"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["East Han", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad0140", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "East Han"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["Sanguo", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad0262", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "Sanguo"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["W.Jing", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad0281", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "W.Jing"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["Sui", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad0612", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "Sui"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["Tang Jiaotong", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "Tang_TrafficRoute", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "Tang Jiaotong"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["Tang Gedao Zhoujie", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "Tang_Admin", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "Tang Gedao Zhoujie"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["S.Song", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad1208", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "S.Song"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["Yuan", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad1330", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "Yuan"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["Ming", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad1582", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "Ming"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["Qing", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad1820", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "Qing"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["China_Map_1937", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "China_Map_1937", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "China_Map_1937"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["China_Map_1940s", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "China_Map_1940s", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "China_Map_1940s"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["China_Map_1945b", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "China_Map_1945b", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "China_Map_1945b"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["China_Map_1945c", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "China_Map_1945c", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "China_Map_1945c"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["China_Map_1947", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "China_Map_1947", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "China_Map_1947"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["China_Map_1950s", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "China_Map_1950s", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "China_Map_1950s"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["Du Shi Fang Yu Jiyao", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad1582_10_2s", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "Du Shi Fang Yu Jiyao"
+        }]
+    else:
+        MAP_BASELAYERS += [{
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["商時期地圖", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "shang", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "商時期地圖"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["西周時期地圖", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "Xijhou", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "西周時期地圖"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["春秋時期地圖", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "spring_autumn", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "春秋時期地圖"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["戰國時期地圖", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "warring_states", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "戰國時期地圖"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["西漢歷史地圖", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "bc0007", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "西漢歷史地圖"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["東漢歷史地圖", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad0140", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "東漢歷史地圖"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["三國歷史地圖", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad0262", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "三國歷史地圖"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["西晉歷史地圖", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad0281", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "西晉歷史地圖"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["东晉歷史地圖", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad0382", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "东晉歷史地圖"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["南北朝歷史地圖", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad0497", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "南北朝歷史地圖"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["隋代歷史地圖", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad0612", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "隋代歷史地圖"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["唐代歷史地圖", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad0741", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "唐代歷史地圖"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["唐代交通路線圖", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "Tang_TrafficRoute", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "唐代交通路線圖"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["唐代各道、州界", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "Tang_Admin", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "唐代各道、州界"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["北宋歷史地圖", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad1111", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "北宋歷史地圖"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["南宋歷史地圖", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad1208", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "南宋歷史地圖"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["元代歷史地圖", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad1330", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "元代歷史地圖"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["明代歷史地圖", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad1582", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "明代歷史地圖"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["明代雲南外邊與軍管政區", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "mingbd_yn", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "明代雲南外邊與軍管政區"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["清代歷史地圖", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad1820", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "清代歷史地圖"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["中華民國全圖1937", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "China_Map_1937", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "中華民國全圖1937"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["中華民國全圖1950", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "China_Map_1950s", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "中華民國全圖1950"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["中華民國新地圖1940", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "China_Map_1940s", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "中華民國新地圖1940"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["中華民國新地圖1945b", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "China_Map_1945b", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "中華民國新地圖1945b"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["中華民國新地圖1945c", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "China_Map_1945c", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "中華民國新地圖1945c"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["中華民國新地圖1947", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "China_Map_1947", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "中華民國新地圖1947"
+        }, {
+            "source": {"ptype": "gxp_olsource"},
+            "type": "OpenLayers.Layer.TMS",
+            "args": ["讀史方輿紀要地名", "http://amap.zju.edu.cn/sinica/",
+                     {"layername": "ad1582_10_2s", "type": "png"}],
+            "visibility": False,
+            "fixed": True,
+            "group": "background",
+            "title": "讀史方輿紀要地名"
+        }]
 
 if TIANDITU_API_KEY:
     MAP_BASELAYERS += [{
