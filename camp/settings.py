@@ -1049,3 +1049,5 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:8000',
     'http://localhost:8080',
 ]
+
+AVATAR_BASE_URL = os.getenv('AVATAR_BASE_URL', "www.gravatar.com")
